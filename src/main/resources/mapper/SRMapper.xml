@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL Mapping -->
+<mapper namespace="com.gora.irago.mapper.SRMapper" >
+    <select id="selectList" resultType="com.gora.irago.domain.SRVO">
+        select  kid
+              , title
+              , content
+              , type
+              , reg_kid     AS regKid
+              , reg_dt      AS regDt
+              , stat_fl     AS statFl
+              , char_kid    AS charKid
+          from sr
+    </select>
+</mapper>
