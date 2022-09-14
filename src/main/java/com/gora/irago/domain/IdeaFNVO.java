@@ -2,14 +2,16 @@ package com.gora.irago.domain;
 
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
-public class IdeaVO {
+public class IdeaFNVO {
+
     private Integer kid;
+    
     private String title;
     private String content;
     private String stat;
-    private String delFl;
-    private Date regDt;
+
+    private IdeaVO idea;
+    private Integer charger;
+    
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gora.irago.mapper.IdeaMapper" >
+
+    <insert id="insertIdea">
+        INSERT INTO idea (title, content) VALUE (#{title}, #{content})
+    </insert>
+
+    <insert id="insertIdeaFN">
+        INSERT INTO idea_func (title, content, char_kid, stat) VALUE (#{title}, #{content}, #{charger}, #{stat})
+    </insert>
+
+    <select id="selectList" resultType="com.gora.irago.domain.IdeaVO">
+        select  kid
+              , name
+              , desc
+              , stat
+              , del_fl      AS delFl
+              , reg_dt      AS regDt
+          from idea
+    </select>
+</mapper>
