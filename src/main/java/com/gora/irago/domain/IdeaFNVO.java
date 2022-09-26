@@ -7,11 +7,10 @@ public class IdeaFNVO {
 
     private Integer kid;
     
-    private String title;
-    private String content;
+    private String name;
+    private String description;
     private String stat;
 
-    private IdeaVO idea;
     private Integer charger;
     
 }

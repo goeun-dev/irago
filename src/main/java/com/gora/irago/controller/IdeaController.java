@@ -6,9 +6,11 @@ import com.gora.irago.service.IdeaService;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
@@ -25,12 +27,14 @@ public class IdeaController {
         log.info("register GET......");
     }
 
-    @PostMapping("/register")
-    public void registerPOST(IdeaVO ideaVO, IdeaFNVO ideaFNVO) {
+    @RequestMapping(value = "/register")
+    public ResponseEntity<IdeaVO> registerPOST(@RequestBody IdeaVO ideaVO) {
 
-        log.info("register POST......" + ideaVO);
+        log.info("register POST....." + ideaVO);
 
-        ideaService.register(ideaVO, ideaFNVO);
+//        ideaService.register(ideaVO, ideaFNVO);
+        return ResponseEntity.ok(ideaVO);
+
     }
 
     @GetMapping("/read")

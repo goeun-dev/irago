@@ -4,11 +4,11 @@
 <mapper namespace="com.gora.irago.mapper.IdeaMapper" >
 
     <insert id="insertIdea">
-        INSERT INTO idea (title, content) VALUE (#{title}, #{content})
+        INSERT INTO idea (name, description) VALUE (#{name}, #{description})
     </insert>
 
     <insert id="insertIdeaFN">
-        INSERT INTO idea_func (title, content, char_kid, stat) VALUE (#{title}, #{content}, #{charger}, #{stat})
+        INSERT INTO idea_func (name, description, char_kid, stat) VALUE (#{name}, #{description}, #{charger}, #{stat})
     </insert>
 
     <select id="selectList" resultType="com.gora.irago.domain.IdeaVO">

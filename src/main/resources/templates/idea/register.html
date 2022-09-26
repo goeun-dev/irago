@@ -8,7 +8,7 @@
 <h1>Idea Register</h1>
 <h4>idea</h4>
 
-<form method="post" action="/idea/register">
+<form method="post" action="">
     <div>
         <div>
             <span>title</span>
@@ -17,8 +17,15 @@
         </div>
         <hr />
         <div>
-            <span><input type="text" name="title" /></span>
-            <span><textarea name="content"></textarea></span>
+            <span><input type="text" name="idName" /></span>
+            <span><textarea name="idDesc"></textarea></span>
+            <span>
+                <select name="idStat">
+                    <option value="N">not started</option>
+                    <option value="P">P</option>
+                    <option value="Y">Y</option>
+                </select>
+            </span>
         </div>
     </div>
     <br />
@@ -35,25 +42,37 @@
         <hr />
         <div class="fn-input">
             <span>
-                <input type="text" />
+                <input type="text" name="fnName" />
             </span>
-            <span><input /></span>
-            <span><select><option>go</option></select></span>
-            <span><select><option>not started</option></select></span>
+            <span><input type="text" name="fnDesc" /></span>
+            <span>
+                <select name="fnCharger">
+                    <option value="1">ra</option>
+                    <option value="2">go</option>
+                </select>
+            </span>
+            <span>
+                <select name="fnStat">
+                    <option value="N">not started</option>
+                    <option value="P">P</option>
+                    <option value="Y">Y</option>
+                </select>
+            </span>
         </div>
     </div>
-    <div id="add"><button> + </button></div>
+    <div ><button id="add"> + </button></div>
 
     <br/>
 
     <div>
         <button>cancel</button>
-        <button type="submit">confirm</button>
+        <button id="confirm">confirm</button>
     </div>
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
+    // 기능 추가
     $('#add').on("click", function (e) {
         e.preventDefault();
 
@@ -61,7 +80,67 @@
 
         $('#function').append(fn);
 
-        console.log(fn);
+        // console.log(fn);
+
+    });
+
+    // 아이디어&기능 등록
+    $('#confirm').on("click", function (e) {
+        e.preventDefault();
+
+        // 폼 태그에서 데이터 받아오기
+        const idName = $('input[name=idName]').val();
+        const idDesc = $('input[name=idDesc]').val();
+        const idStat = $('select[name=idStat]').val();
+
+        const fnName = $('input[name=fnName]');
+        const fnDesc = $('input[name=fnDesc]');
+        const fnStat = $('select[name=fnStat]');
+        const fnCharger = $('select[name=fnCharger]');
+
+        let ideaFNList = [];
+
+        fnName.each(function (i) {
+            let ideaFN = {};
+
+            console.log(i + "fnName: " + fnName.eq(i).val());
+            console.log(i + "fnDesc: " + fnDesc.eq(i).val());
+            console.log(i + "fnStat: " + fnStat.eq(i).val());
+            console.log(i + "fnCharger: " + fnCharger.eq(i).val());
+
+            ideaFN.name = fnName.eq(i).val();
+            ideaFN.description = fnDesc.eq(i).val();
+            ideaFN.stat = fnStat.eq(i).val();
+            ideaFN.charger = fnCharger.eq(i).val() * 1;
+
+            ideaFNList.push(ideaFN);
+
+        });
+
+        console.log(ideaFNList);
+
+
+        // ajax 폼 전송
+        jQuery.ajaxSettings.traditional = true;
+
+        $.ajax({
+            type : "POST",
+            url : "/idea/register",
+            data : JSON.stringify({
+                name: idName,
+                description: idDesc,
+                stat: idStat,
+                ideaFNList: ideaFNList
+            }),
+            dataType: 'json',
+            contentType: 'application/json',
+            success : function(data) {
+                console.log('success: ', data)
+            },
+            error : function(data) {
+            }
+        });
+
 
     });
 </script>
