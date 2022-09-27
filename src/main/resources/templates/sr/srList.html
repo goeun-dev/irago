@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>iRaGo - SR list</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+            <tr>
+                <th>seq</th>
+                <th>title</th>
+                <th>type</th>
+                <th>status</th>
+                <th>register</th>
+                <th>date</th>
+            </tr>
+    </thead>
+    <tbody>
+        <tr th:each="list : ${list}">
+            <td th:text="${list.kid}"></td>
+            <td th:text="${list.title}"></td>
+            <td th:text="${list.type}"></td>
+            <td th:text="${list.statFl}"></td>
+            <td th:text="${list.regId}"></td>
+            <td th:text="${list.regDt}"></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

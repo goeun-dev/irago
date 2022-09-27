@@ -5,14 +5,22 @@
 <!-- SQL Mapping -->
 <mapper namespace="com.gora.irago.mapper.SRMapper" >
     <select id="selectList" resultType="com.gora.irago.domain.SRVO">
-        select  kid
-              , title
-              , content
-              , type
-              , reg_kid     AS regKid
-              , reg_dt      AS regDt
-              , stat_fl     AS statFl
-              , char_kid    AS charKid
-          from sr
+        SELECT  SR.KID
+              , SR.TITLE
+              , SR.CONTENT
+              , SR.TYPE
+              , SR.REG_DT      AS regDt
+              , SR.STAT_FL     AS statFl
+              , SR.REG_KID     AS regKid
+              , RG.NAME        AS regName
+              , RG.ID          AS regId
+              , SR.CHAR_KID    AS charKid
+              , CHR.NAME       AS charName
+              , CHR.ID         AS charId
+          FROM  SR SR
+              , USER RG
+              , USER CHR
+         WHERE  SR.REG_KID = RG.KID
+           AND  SR.CHAR_KID = CHR.KID
     </select>
 </mapper>
