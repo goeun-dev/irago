@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>iRaGo - SR Detail</title>
+</head>
+<body>
+<h1>SR</h1>
+<table border="1">
+    <tr>
+        <th>title</th>
+        <td th:text="${VO.title}"></td>
+    </tr>
+    <tr>
+        <th>contents</th>
+        <td th:text="${VO.content}"></td>
+    </tr>
+    <tr>
+        <th>type</th>
+        <td th:text="${VO.type}"></td>
+    </tr>
+    <tr>
+        <th>status</th>
+        <td th:text="${VO.statFl}"></td>
+    </tr>
+    <tr>
+        <th>register</th>
+        <td th:text="${VO.regId}"></td>
+    </tr>
+    <tr>
+        <th>charger</th>
+        <td th:text="${VO.charId}"></td>
+    </tr>
+</table>
+<input type="button" value="to list" onclick="location.href='/sr/list.do'">
+<input type="button" value="modify" onclick="location.href='/sr/modify.do'">
+<input type="button" value="delete" th:onclick="'location.href=\'/sr/delete.do?kid='+${VO.kid}+'\''">
+</body>
+</html>

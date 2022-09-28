@@ -8,4 +8,8 @@ import java.util.List;
 @Mapper
 public interface SRMapper {
     public List<SRVO> selectList();
+
+    public SRVO selectOne(SRVO srVO);
+
+    public int deleteOne(SRVO srVO);
 }

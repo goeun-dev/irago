@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>iRaGo - SR Create</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>title</th>
+        <td>
+            <input value="title" type="text"/>
+        </td>
+    </tr>
+    <tr>
+        <th>contents</th>
+        <td>
+            <input value="content" type="text"/>
+        </td>
+    </tr>
+    <tr>
+        <th>type</th>
+        <td>
+            <input value="type" type="text">
+        </td>
+    </tr>
+    <tr>
+        <th>status</th>
+        <td>
+            <input value="statFl" type="text">
+        </td>
+    </tr>
+    <tr>
+        <th>register</th>
+        <td>
+            <input value="regId" type="text">
+        </td>
+    </tr>
+    <tr>
+        <th>charger</th>
+        <td>
+            <input value="charId" type="text">
+        </td>
+    </tr>
+</table>
+<input type="button" value="create" onclick="location.href='/sr/create.do'">
+</body>
+</html>

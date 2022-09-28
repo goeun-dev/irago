@@ -17,7 +17,7 @@
             </tr>
     </thead>
     <tbody>
-        <tr th:each="list : ${list}">
+        <tr th:each="list : ${list}" th:onclick="'location.href=\''+@{/sr/detail.do}+'?kid='+${list.kid}+'\''" >
             <td th:text="${list.kid}"></td>
             <td th:text="${list.title}"></td>
             <td th:text="${list.type}"></td>
@@ -27,5 +27,6 @@
         </tr>
     </tbody>
 </table>
+<input type="button" value="create" onclick="location.href='/sr/create.do'">
 </body>
 </html>

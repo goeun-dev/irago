@@ -9,18 +9,45 @@
               , SR.TITLE
               , SR.CONTENT
               , SR.TYPE
-              , SR.REG_DT      AS regDt
-              , SR.STAT_FL     AS statFl
-              , SR.REG_KID     AS regKid
-              , RG.NAME        AS regName
-              , RG.ID          AS regId
-              , SR.CHAR_KID    AS charKid
-              , CHR.NAME       AS charName
-              , CHR.ID         AS charId
+              , SR.REG_DT
+              , SR.STAT_FL
+              , SR.REG_KID
+              , RG.NAME
+              , RG.ID           AS regId
+              , SR.CHAR_KID
+              , CHR.NAME
+              , CHR.ID          AS charId
           FROM  SR SR
               , USER RG
               , USER CHR
          WHERE  SR.REG_KID = RG.KID
            AND  SR.CHAR_KID = CHR.KID
     </select>
+
+    <select id="selectOne" parameterType="com.gora.irago.domain.SRVO" resultType="com.gora.irago.domain.SRVO">
+        SELECT  SR.KID
+              , SR.TITLE
+              , SR.CONTENT
+              , SR.TYPE
+              , SR.REG_DT
+              , SR.STAT_FL
+              , SR.REG_KID
+              , RG.NAME
+              , RG.ID           AS regId
+              , SR.CHAR_KID
+              , CHR.NAME
+              , CHR.ID          AS charId
+        FROM  SR SR
+            , USER RG
+            , USER CHR
+        WHERE  SR.REG_KID = RG.KID
+          AND  SR.CHAR_KID = CHR.KID
+          AND  SR.KID = #{kid}
+    </select>
+
+    <delete id="deleteOne" parameterType="com.gora.irago.domain.SRVO">
+        DELETE
+        FROM  SR
+        WHERE KID = #{kid}
+    </delete>
 </mapper>
