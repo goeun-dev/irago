@@ -29,4 +29,9 @@ public class SRServiceImpl implements SRService {
     public int deleteOne(SRVO srVO) {
         return srMapper.deleteOne(srVO);
     }
+
+    @Override
+    public int insertOne(SRVO srVO) {
+        return srMapper.insertOne(srVO);
+    }
 }

@@ -17,11 +17,13 @@
               , SR.CHAR_KID
               , CHR.NAME
               , CHR.ID          AS charId
-          FROM  SR SR
-              , USER RG
-              , USER CHR
-         WHERE  SR.REG_KID = RG.KID
-           AND  SR.CHAR_KID = CHR.KID
+          FROM  USER RG
+                RIGHT OUTER JOIN
+                SR SR
+                ON SR.REG_KID = RG.KID
+                LEFT OUTER JOIN
+                USER CHR
+                ON SR.CHAR_KID = CHR.KID
     </select>
 
     <select id="selectOne" parameterType="com.gora.irago.domain.SRVO" resultType="com.gora.irago.domain.SRVO">
@@ -37,13 +39,40 @@
               , SR.CHAR_KID
               , CHR.NAME
               , CHR.ID          AS charId
-        FROM  SR SR
-            , USER RG
-            , USER CHR
-        WHERE  SR.REG_KID = RG.KID
-          AND  SR.CHAR_KID = CHR.KID
-          AND  SR.KID = #{kid}
+          FROM  USER RG
+                RIGHT OUTER JOIN
+                SR SR
+                ON SR.REG_KID = RG.KID
+                LEFT OUTER JOIN
+                USER CHR
+                ON SR.CHAR_KID = CHR.KID
+         WHERE  SR.KID = #{kid}
     </select>
+
+    <insert id="insertOne" parameterType="com.gora.irago.domain.SRVO">
+        INSERT INTO SR
+            (
+               KID
+             , TITLE
+             , CONTENT
+             , TYPE
+             , REG_KID
+        <if test="charKid != 0 and charKid != null">
+             , CHAR_KID
+        </if>
+            )
+        VALUES
+            (
+               #{kid}
+             , #{title}
+             , #{content}
+             , #{type}
+             , #{regKid}
+        <if test="charKid != 0 and charKid != null">
+             , #{charKid}
+        </if>
+            )
+    </insert>
 
     <delete id="deleteOne" parameterType="com.gora.irago.domain.SRVO">
         DELETE
