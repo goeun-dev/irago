@@ -120,8 +120,11 @@ public class SRController {
     @RequestMapping("/confirm.do")
     public String confirmOne(Model model, @ModelAttribute("SRVO") SRVO srVO){
         int result = srService.insertOne(srVO);
-        model.addAttribute("sr", srVO);
-        return "/sr/srDetail.do";
+        if (result >= 1) {
+            return "redirect:./list.do";
+        } else {
+            return "/error.html";
+        }
     }
 
     /**
@@ -138,7 +141,8 @@ public class SRController {
             List<SRVO> list = srService.selectList();
             model.addAttribute("list", list);
             return "/sr/srList.html";
+        } else {
+            return "/error.html";
         }
-        return "/error.html";
     }
 }
