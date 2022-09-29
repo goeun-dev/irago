@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>iRaGo</title>
@@ -22,11 +22,11 @@
             <span>date</span>
         </div>
         <hr />
-        <div>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+        <div th:each="idea : ${ideaList}">
+            <span th:text="${idea.kid}"></span>
+            <span th:text="${idea.name}"></span>
+            <span th:text="${idea.stat}"></span>
+            <span th:text="${#dates.format(idea.regDt, 'yyyy-MM-dd HH:mm:ss')}"></span>
         </div>
     </div>
 </body>

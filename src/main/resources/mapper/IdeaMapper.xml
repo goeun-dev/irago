@@ -21,7 +21,7 @@
     <select id="selectList" resultType="com.gora.irago.domain.IdeaVO">
         select  kid
               , name
-              , desc
+              , description
               , stat
               , del_fl      AS delFl
               , reg_dt      AS regDt

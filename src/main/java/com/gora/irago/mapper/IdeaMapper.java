@@ -12,4 +12,6 @@ public interface IdeaMapper {
     void insertIdea(IdeaVO ideaVO);
 
     void insertIdeaFN(List<IdeaFNVO> ideaFNVOList);
+
+    List<IdeaVO> selectList();
 }
