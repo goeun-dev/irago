@@ -90,7 +90,7 @@
 
         // 폼 태그에서 데이터 받아오기
         const idName = $('input[name=idName]').val();
-        const idDesc = $('input[name=idDesc]').val();
+        const idDesc = $('textarea[name=idDesc]').val();
         const idStat = $('select[name=idStat]').val();
 
         const fnName = $('input[name=fnName]');
@@ -117,7 +117,7 @@
 
         });
 
-        console.log(ideaFNList);
+        // console.log(ideaFNList);
 
 
         // ajax 폼 전송
@@ -135,7 +135,8 @@
             dataType: 'json',
             contentType: 'application/json',
             success : function(data) {
-                console.log('success: ', data)
+               // console.log('success: ', data)
+                location.href = "/idea/list";
             },
             error : function(data) {
             }

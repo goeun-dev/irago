@@ -4,11 +4,18 @@
 <mapper namespace="com.gora.irago.mapper.IdeaMapper" >
 
     <insert id="insertIdea">
-        INSERT INTO idea (name, description) VALUE (#{name}, #{description})
+        INSERT INTO
+            idea (name, description)
+        VALUE (#{name}, #{description})
     </insert>
 
     <insert id="insertIdeaFN">
-        INSERT INTO idea_func (name, description, char_kid, stat) VALUE (#{name}, #{description}, #{charger}, #{stat})
+        INSERT INTO
+            idea_func (idea_kid, name, description, char_kid, stat)
+        VALUES
+        <foreach item="fn" collection="list" separator=",">
+            (LAST_INSERT_ID(), #{fn.name}, #{fn.description}, #{fn.charger}, #{fn.stat})
+        </foreach>
     </insert>
 
     <select id="selectList" resultType="com.gora.irago.domain.IdeaVO">

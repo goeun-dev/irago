@@ -17,11 +17,11 @@ public class IdeaServiceImpl implements IdeaService {
     private IdeaMapper ideaMapper;
 
     @Override
-    public void register(IdeaVO ideaVO, IdeaFNVO ideaFNVO) {
+    public void register(IdeaVO ideaVO) {
 
-        log.info("idea service [register]....." + ideaVO  + "\n " + ideaFNVO );
+        log.info("idea service [register]....." + ideaVO);
 
         ideaMapper.insertIdea(ideaVO);
-        ideaMapper.insertIdeaFN(ideaFNVO);
+        ideaMapper.insertIdeaFN(ideaVO.getIdeaFNList());
     }
 }

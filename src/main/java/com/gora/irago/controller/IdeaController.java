@@ -32,7 +32,7 @@ public class IdeaController {
 
         log.info("register POST....." + ideaVO);
 
-//        ideaService.register(ideaVO, ideaFNVO);
+        ideaService.register(ideaVO);
         return ResponseEntity.ok(ideaVO);
 
     }
