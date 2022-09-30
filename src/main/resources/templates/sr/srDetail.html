@@ -38,7 +38,7 @@
     </tr>
 </table>
 <input type="button" value="to list" onclick="location.href='/sr/list.do'">
-<input type="button" value="modify" onclick="location.href='/sr/modify.do'">
+<input type="button" value="modify" th:onclick="'location.href=\'/sr/modify.do?kid='+${sr.kid}+'\''">
 <input type="button" value="delete" th:onclick="'location.href=\'/sr/delete.do?kid='+${sr.kid}+'\''">
 </body>
 </html>

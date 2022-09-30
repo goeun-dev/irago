@@ -56,6 +56,7 @@
              , TITLE
              , CONTENT
              , TYPE
+             , STAT_FL
              , REG_KID
         <if test="charKid != 0 and charKid != null">
              , CHAR_KID
@@ -67,12 +68,25 @@
              , #{title}
              , #{content}
              , #{type}
+             , #{statFl}
              , #{regKid}
         <if test="charKid != 0 and charKid != null">
              , #{charKid}
         </if>
             )
     </insert>
+
+    <update id="updateOne" parameterType="com.gora.irago.domain.SRVO">
+        UPDATE  SR
+           SET  TITLE = #{title}
+              , CONTENT = #{content}
+              , TYPE = #{type}
+              , STAT_FL = #{statFl}
+        <if test="charKid != 0 and charKid != null">
+              , CHAR_KID = #{charKid}
+        </if>
+         WHERE  KID = #{kid}
+    </update>
 
     <delete id="deleteOne" parameterType="com.gora.irago.domain.SRVO">
         DELETE

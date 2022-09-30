@@ -34,4 +34,9 @@ public class SRServiceImpl implements SRService {
     public int insertOne(SRVO srVO) {
         return srMapper.insertOne(srVO);
     }
+
+    @Override
+    public int updateOne(SRVO srVO) {
+        return srMapper.updateOne(srVO);
+    }
 }

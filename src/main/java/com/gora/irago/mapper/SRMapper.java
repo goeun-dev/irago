@@ -14,4 +14,6 @@ public interface SRMapper {
     int deleteOne(SRVO srVO);
 
     int insertOne(SRVO srVO);
+
+    int updateOne(SRVO srVO);
 }

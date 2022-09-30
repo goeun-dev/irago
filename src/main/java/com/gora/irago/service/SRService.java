@@ -12,4 +12,6 @@ public interface SRService {
     int deleteOne(SRVO srVO);
 
     int insertOne(SRVO srVO);
+
+    int updateOne(SRVO srVO);
 }
