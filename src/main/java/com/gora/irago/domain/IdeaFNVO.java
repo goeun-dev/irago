@@ -11,6 +11,7 @@ public class IdeaFNVO {
     private String description;
     private String stat;
 
+    private Integer ideaKid;
     private Integer charger;
     
 }

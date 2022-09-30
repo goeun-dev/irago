@@ -32,4 +32,16 @@ public class IdeaServiceImpl implements IdeaService {
 
         return ideaMapper.selectList();
     }
+
+    @Override
+    public IdeaVO read(Integer kid) {
+
+        IdeaVO idea = ideaMapper.selectIdea(kid);
+
+        List<IdeaFNVO> ideaFNList = ideaMapper.selectIdeaFN(kid);
+
+        idea.setIdeaFNList(ideaFNList);
+
+        return idea;
+    }
 }

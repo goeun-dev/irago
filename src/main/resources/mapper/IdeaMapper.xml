@@ -27,4 +27,26 @@
               , reg_dt      AS regDt
           from idea
     </select>
+
+    <select id="selectIdea" resultType="com.gora.irago.domain.IdeaVO">
+        select kid
+             , name
+             , description
+             , stat
+        FROM idea
+        WHERE
+            kid=#{kid}
+    </select>
+
+    <select id="selectIdeaFN" resultType="com.gora.irago.domain.IdeaFNVO">
+        select
+               name
+             , description
+             , char_kid     AS charger
+             , stat
+             , idea_kid     AS ideaKid
+        FROM idea_func
+        WHERE
+            idea_kid = #{ideaKid}
+    </select>
 </mapper>

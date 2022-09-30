@@ -9,4 +9,6 @@ public interface IdeaService {
     void register(IdeaVO ideaVO);
 
     List<IdeaVO> getList();
+
+    IdeaVO read(Integer kid);
 }

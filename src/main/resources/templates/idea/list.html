@@ -24,7 +24,7 @@
         <hr />
         <div th:each="idea : ${ideaList}">
             <span th:text="${idea.kid}"></span>
-            <span th:text="${idea.name}"></span>
+            <span><a th:href="@{|/idea/read?kid=${idea.kid}|}" th:text="${idea.name}"></a></span>
             <span th:text="${idea.stat}"></span>
             <span th:text="${#dates.format(idea.regDt, 'yyyy-MM-dd HH:mm:ss')}"></span>
         </div>

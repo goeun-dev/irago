@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>iRaGo</title>
@@ -15,9 +15,9 @@
         </div>
         <hr />
         <div>
-            <span></span>
-            <span></span>
-            <span></span>
+            <span th:text="${idea.name}"></span>
+            <span th:text="${idea.description}"></span>
+            <span th:text="${idea.stat}"></span>
         </div>
     </div>
     <br />
@@ -32,20 +32,67 @@
             <span>status</span>
         </div>
         <hr />
-        <div>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <th:block th:if="${#lists.isEmpty(idea.ideaFNList)}">
+            <div>
+                <span>기능 목록이 존재하지 않습니다.</span>
+            </div>
+        </th:block>
+        <th:block th:if="${!#lists.isEmpty(idea.ideaFNList)}">
+            <div th:each="fn : ${idea.ideaFNList}">
+                    <span th:text="${fn.name}">></span>
+                    <span th:text="${fn.description}"></span>
+                    <span th:text="${fn.charger}"></span>
+                    <span th:text="${fn.stat}"></span>
+            </div>
+        </th:block>
     </div>
 
     <br/>
 
     <div>
-        <button>to list</button>
-        <button>modify</button>
+        <button id="list">to list</button>
+        <button id="modify" th:data-kid="${idea.kid}">modify</button>
         <button>delete</button>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script>
+    // 리스트로 이동
+    $('#list').on("click", function (e) {
+        e.preventDefault();
+
+        location.href="/idea/list"
+
+    });
+
+    // 수정
+    $('#modify').on("click", function (e) {
+        e.preventDefault();
+
+        const kid = $('#modify').data('kid');
+
+        location.href="/idea/modify?kid=" + kid;
+
+    });
+
+    // 삭제
+    $('#delete').on("click", function (e) {
+        e.preventDefault();
+
+        const kid = $('#modify').data('kid');
+
+        $.ajax({
+            type : "POST",
+            url : "/idea/delete",
+            data : {kid: kid},
+            success : function(data) {
+                // console.log('success: ', data)
+
+            },
+            error : function(data) {
+            }
+        });
+
+    });
+</script>
 </html>

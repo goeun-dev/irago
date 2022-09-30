@@ -29,18 +29,18 @@ public class IdeaController {
     }
 
     @RequestMapping(value = "/register")
-    public ResponseEntity<IdeaVO> registerPOST(@RequestBody IdeaVO ideaVO) {
+    public String registerPOST(@RequestBody IdeaVO ideaVO) {
 
         log.info("register POST....." + ideaVO);
 
         ideaService.register(ideaVO);
-        return ResponseEntity.ok(ideaVO);
+        return "/idea/list";
 
     }
 
     @GetMapping("/read")
-    public void readGET() {
-
+    public void readGET(Integer kid, Model model) {
+        model.addAttribute("idea", ideaService.read(kid));
     }
 
     @GetMapping("/list")
