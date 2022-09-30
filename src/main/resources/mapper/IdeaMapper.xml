@@ -49,4 +49,8 @@
         WHERE
             idea_kid = #{ideaKid}
     </select>
+
+    <delete id="delete">
+        DELETE FROM idea WHERE kid = #{kid}
+    </delete>
 </mapper>

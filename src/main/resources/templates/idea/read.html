@@ -52,7 +52,7 @@
     <div>
         <button id="list">to list</button>
         <button id="modify" th:data-kid="${idea.kid}">modify</button>
-        <button>delete</button>
+        <button id="delete">delete</button>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -84,10 +84,10 @@
         $.ajax({
             type : "POST",
             url : "/idea/delete",
-            data : {kid: kid},
+            data : {kid: kid * 1},
             success : function(data) {
                 // console.log('success: ', data)
-
+                location.href = "/idea/list";
             },
             error : function(data) {
             }

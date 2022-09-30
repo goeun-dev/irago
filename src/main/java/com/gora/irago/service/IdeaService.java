@@ -11,4 +11,6 @@ public interface IdeaService {
     List<IdeaVO> getList();
 
     IdeaVO read(Integer kid);
+
+    void remove(Integer kid);
 }

@@ -44,4 +44,9 @@ public class IdeaServiceImpl implements IdeaService {
 
         return idea;
     }
+
+    @Override
+    public void remove(Integer kid) {
+        ideaMapper.delete(kid);
+    }
 }

@@ -6,6 +6,7 @@ import com.gora.irago.service.IdeaService;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,13 +30,13 @@ public class IdeaController {
     }
 
     @RequestMapping(value = "/register")
-    public String registerPOST(@RequestBody IdeaVO ideaVO) {
+    public ResponseEntity<String> registerPOST(@RequestBody IdeaVO ideaVO) {
 
         log.info("register POST....." + ideaVO);
 
         ideaService.register(ideaVO);
-        return "/idea/list";
 
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
     @GetMapping("/read")
@@ -53,8 +54,10 @@ public class IdeaController {
 
     }
 
-    @GetMapping("/delete")
-    public void deleteGET() {
+    @PostMapping("/delete")
+    public ResponseEntity<String> deleteGET(Integer kid) {
+        ideaService.remove(kid);
 
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }
