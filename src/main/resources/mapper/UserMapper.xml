@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL Mapping -->
+<mapper namespace="com.gora.irago.mapper.UserMapper" >
+    <select id="selectList" resultType="com.gora.irago.domain.UserVO">
+        SELECT  KID
+              , NAME
+              , AUTH
+              , REG_DT
+              , DEL_FL
+              , DEL_DT
+              , ID
+              , PW
+          FROM  USER
+    </select>
+
+    <select id="selectAdminList" parameterType="com.gora.irago.domain.UserVO" resultType="com.gora.irago.domain.UserVO">
+        SELECT  KID
+              , NAME
+              , AUTH
+              , REG_DT
+              , DEL_FL
+              , DEL_DT
+              , ID
+              , PW
+         FROM  USER
+        WHERE  AUTH = 'admin'
+    </select>
+
+    <select id="selectOne" parameterType="com.gora.irago.domain.UserVO" resultType="com.gora.irago.domain.UserVO">
+        SELECT  KID
+              , NAME
+              , AUTH
+              , REG_DT
+              , DEL_FL
+              , DEL_DT
+              , ID
+              , PW
+          FROM  USER
+         WHERE  KID = #{kid}
+    </select>
+
+
+
+    <insert id="insertOne" parameterType="com.gora.irago.domain.UserVO">
+        INSERT INTO SR
+            (
+                KID
+              , NAME
+              , AUTH
+              , ID
+              , PW
+            )
+        VALUES
+            (
+               #{kid}
+             , #{name}
+             , #{auth}
+             , #{id}
+             , #{pw}
+            )
+    </insert>
+
+    <delete id="deleteOne" parameterType="com.gora.irago.domain.UserVO">
+        DELETE
+        FROM  USER
+        WHERE KID = #{kid}
+    </delete>
+</mapper>
