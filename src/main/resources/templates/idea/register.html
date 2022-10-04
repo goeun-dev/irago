@@ -84,6 +84,14 @@
 
     });
 
+    // 취소
+    $('#cancel').on("click", function (e) {
+        e.preventDefault();
+
+        location.href="/idea/list";
+
+    });
+
     // 아이디어&기능 등록
     $('#confirm').on("click", function (e) {
         e.preventDefault();

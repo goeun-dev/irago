@@ -13,4 +13,6 @@ public interface IdeaService {
     IdeaVO read(Integer kid);
 
     void remove(Integer kid);
+
+    void modify(IdeaVO ideaVO);
 }

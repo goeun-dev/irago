@@ -40,7 +40,8 @@
 
     <select id="selectIdeaFN" resultType="com.gora.irago.domain.IdeaFNVO">
         select
-               name
+               kid
+             , name
              , description
              , char_kid     AS charger
              , stat
@@ -53,4 +54,27 @@
     <delete id="delete">
         DELETE FROM idea WHERE kid = #{kid}
     </delete>
+
+    <update id="updateIdea">
+        UPDATE
+            idea
+        SET
+              name = #{name}
+            , description = #{description}
+            , stat = #{stat}
+        WHERE
+            kid = #{kid}
+    </update>
+
+    <update id="updateIdeaFN">
+        UPDATE
+            idea_func
+        SET
+                  name = #{name}
+                , description = #{description}
+                , char_kid = #{charger}
+                , stat = #{stat}
+        WHERE
+            kid = #{kid}
+    </update>
 </mapper>

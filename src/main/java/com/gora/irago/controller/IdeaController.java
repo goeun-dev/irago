@@ -10,10 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequestMapping("/idea")
@@ -50,12 +47,22 @@ public class IdeaController {
     }
 
     @GetMapping("/modify")
-    public void modifyGET() {
+    public void modifyGET(Integer kid, Model model) {
+        model.addAttribute("idea", ideaService.read(kid));
+    }
 
+    @RequestMapping(value = "/modify", method = RequestMethod.POST)
+    public ResponseEntity<String> modifyPOST(@RequestBody IdeaVO ideaVO) {
+
+        log.info("modify POST....." + ideaVO);
+
+        ideaService.modify(ideaVO);
+
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<String> deleteGET(Integer kid) {
+    public ResponseEntity<String> deletePOST(Integer kid) {
         ideaService.remove(kid);
 
         return new ResponseEntity<>("success", HttpStatus.OK);

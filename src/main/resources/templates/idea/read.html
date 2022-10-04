@@ -39,7 +39,7 @@
         </th:block>
         <th:block th:if="${!#lists.isEmpty(idea.ideaFNList)}">
             <div th:each="fn : ${idea.ideaFNList}">
-                    <span th:text="${fn.name}">></span>
+                    <span th:text="${fn.name}"></span>
                     <span th:text="${fn.description}"></span>
                     <span th:text="${fn.charger}"></span>
                     <span th:text="${fn.stat}"></span>

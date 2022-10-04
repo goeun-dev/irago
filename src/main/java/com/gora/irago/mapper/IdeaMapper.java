@@ -20,4 +20,8 @@ public interface IdeaMapper {
     List<IdeaFNVO> selectIdeaFN(Integer ideaKid);
 
     void delete(Integer kid);
+
+    void updateIdea(IdeaVO ideaVO);
+
+    void updateIdeaFN(IdeaFNVO ideaFNVO);
 }
