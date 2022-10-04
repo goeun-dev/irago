@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>iRaGo - SR Create</title>
+</head>
+<body>
+<h1>SR</h1>
+<form action="/sr/confirm.do" th:object="${sr}" method="post">
+    <table border="1">
+        <tr>
+            <th>title</th>
+            <td>
+                <input th:field="*{title}" type="text" required>
+            </td>
+        </tr>
+        <tr>
+            <th>contents</th>
+            <td>
+                <input th:field="*{content}" type="text" required>
+            </td>
+        </tr>
+        <tr>
+            <th>type</th>
+            <td>
+                <select name="type">
+                    <option value="que" selected="selected">question</option>
+                    <option value="err">error</option>
+                    <option value="imp">improvement</option>
+                    <option value="etc">other inquiries</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>status</th>
+            <td>
+                <select name="statFl">
+                    <option value="N" selected="selected">not be started</option>
+                    <option value="P">in progress</option>
+                    <option value="Y">be complated</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>register</th>
+            <td>
+                <input th:field="*{regKid}" type="hidden">
+                <input th:field="*{regId}" type="text" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>charger</th>
+            <td>
+                <select name="charKid">
+                    <option value="0" selected="selected">to be determined</option>
+                    <th:block th:each="list : ${charList}">
+                    <option th:value="${list.kid}" th:text="${list.id}"></option>
+                    </th:block>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="cancel" onclick="location.href='/sr/list.do'">
+    <button type="submit">confirm</button>
+</form>
+</body>
+</html>

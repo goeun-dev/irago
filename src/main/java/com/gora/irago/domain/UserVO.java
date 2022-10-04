@@ -12,6 +12,7 @@ public class UserVO {
     private Date regDt;
     private String delFl;
     private Date delDt;
+    private int kid;
     private String id;
     private String pw;
 
