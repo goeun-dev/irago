@@ -4,77 +4,98 @@
 <mapper namespace="com.gora.irago.mapper.IdeaMapper" >
 
     <insert id="insertIdea">
-        INSERT INTO
-            idea (name, description)
-        VALUE (#{name}, #{description})
+        INSERT INTO IDEA
+            (
+                NAME
+              , DESCRIPTION
+            )
+        VALUE
+            (
+                #{name}
+              , #{description}
+            )
     </insert>
 
     <insert id="insertIdeaFN">
-        INSERT INTO
-            idea_func (idea_kid, name, description, char_kid, stat)
+        INSERT INTO IDEA_FUNC
+            (
+                IDEA_KID
+              , NAME
+              , DESCRIPTION
+              , CHAR_KID
+              , STAT
+            )
         VALUES
         <foreach item="fn" collection="list" separator=",">
-            (LAST_INSERT_ID(), #{fn.name}, #{fn.description}, #{fn.charger}, #{fn.stat})
+            (
+                LAST_INSERT_ID()
+              , #{fn.name}
+              , #{fn.description}
+              , #{fn.charger}
+              , #{fn.stat}
+            )
         </foreach>
     </insert>
 
     <select id="selectList" resultType="com.gora.irago.domain.IdeaVO">
-        select  kid
-              , name
-              , description
-              , stat
-              , del_fl      AS delFl
-              , reg_dt      AS regDt
-          from idea
+        SELECT  KID
+              , NAME
+              , DESCRIPTION
+              , STAT
+              , DEL_FL
+              , REG_DT
+        FROM IDEA
     </select>
 
     <select id="selectIdea" resultType="com.gora.irago.domain.IdeaVO">
-        select kid
-             , name
-             , description
-             , stat
-        FROM idea
+        SELECT KID
+             , NAME
+             , DESCRIPTION
+             , STAT
+        FROM IDEA
         WHERE
             kid=#{kid}
     </select>
 
     <select id="selectIdeaFN" resultType="com.gora.irago.domain.IdeaFNVO">
-        select
-               kid
-             , name
-             , description
-             , char_kid     AS charger
-             , stat
-             , idea_kid     AS ideaKid
-        FROM idea_func
+        SELECT
+               KID
+             , NAME
+             , DESCRIPTION
+             , CHAR_KID
+             , STAT
+             , IDEA_KID
+        FROM IDEA_FUNC
         WHERE
-            idea_kid = #{ideaKid}
+            IDEA_KID = #{ideaKid}
     </select>
 
     <delete id="delete">
-        DELETE FROM idea WHERE kid = #{kid}
+        DELETE
+        FROM  IDEA
+        WHERE KID = #{kid}
     </delete>
 
     <update id="updateIdea">
         UPDATE
-            idea
+            IDEA
         SET
-              name = #{name}
-            , description = #{description}
-            , stat = #{stat}
+              NAME = #{name}
+            , DESCRIPTION = #{description}
+            , STAT = #{stat}
         WHERE
-            kid = #{kid}
+            KID = #{kid}
     </update>
 
     <update id="updateIdeaFN">
         UPDATE
-            idea_func
+            IDEA_FUNC
         SET
-                  name = #{name}
-                , description = #{description}
-                , char_kid = #{charger}
-                , stat = #{stat}
+                  NAME = #{name}
+                , DESCRIPTION = #{description}
+                , CHAR_KID = #{charger}
+                , STAT = #{stat}
         WHERE
-            kid = #{kid}
+            KID = #{kid}
     </update>
 </mapper>
