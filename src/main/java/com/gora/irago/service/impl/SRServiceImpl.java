@@ -19,4 +19,24 @@ public class SRServiceImpl implements SRService {
     public List<SRVO> selectList() {
         return srMapper.selectList();
     }
+
+    @Override
+    public SRVO selectOne(SRVO srVO) {
+        return srMapper.selectOne(srVO);
+    }
+
+    @Override
+    public int deleteOne(SRVO srVO) {
+        return srMapper.deleteOne(srVO);
+    }
+
+    @Override
+    public int insertOne(SRVO srVO) {
+        return srMapper.insertOne(srVO);
+    }
+
+    @Override
+    public int updateOne(SRVO srVO) {
+        return srMapper.updateOne(srVO);
+    }
 }

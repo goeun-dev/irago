@@ -5,14 +5,92 @@
 <!-- SQL Mapping -->
 <mapper namespace="com.gora.irago.mapper.SRMapper" >
     <select id="selectList" resultType="com.gora.irago.domain.SRVO">
-        select  kid
-              , title
-              , content
-              , type
-              , reg_kid     AS regKid
-              , reg_dt      AS regDt
-              , stat_fl     AS statFl
-              , char_kid    AS charKid
-          from sr
+        SELECT  SR.KID
+              , SR.TITLE
+              , SR.CONTENT
+              , SR.TYPE
+              , SR.REG_DT
+              , SR.STAT_FL
+              , SR.REG_KID
+              , RG.NAME
+              , RG.ID           AS regId
+              , SR.CHAR_KID
+              , CHR.NAME
+              , CHR.ID          AS charId
+          FROM  USER RG
+                RIGHT OUTER JOIN
+                SR SR
+                ON SR.REG_KID = RG.KID
+                LEFT OUTER JOIN
+                USER CHR
+                ON SR.CHAR_KID = CHR.KID
     </select>
+
+    <select id="selectOne" parameterType="com.gora.irago.domain.SRVO" resultType="com.gora.irago.domain.SRVO">
+        SELECT  SR.KID
+              , SR.TITLE
+              , SR.CONTENT
+              , SR.TYPE
+              , SR.REG_DT
+              , SR.STAT_FL
+              , SR.REG_KID
+              , RG.NAME
+              , RG.ID           AS regId
+              , SR.CHAR_KID
+              , CHR.NAME
+              , CHR.ID          AS charId
+          FROM  USER RG
+                RIGHT OUTER JOIN
+                SR SR
+                ON SR.REG_KID = RG.KID
+                LEFT OUTER JOIN
+                USER CHR
+                ON SR.CHAR_KID = CHR.KID
+         WHERE  SR.KID = #{kid}
+    </select>
+
+    <insert id="insertOne" parameterType="com.gora.irago.domain.SRVO">
+        INSERT INTO SR
+            (
+               KID
+             , TITLE
+             , CONTENT
+             , TYPE
+             , STAT_FL
+             , REG_KID
+        <if test="charKid != 0 and charKid != null">
+             , CHAR_KID
+        </if>
+            )
+        VALUES
+            (
+               #{kid}
+             , #{title}
+             , #{content}
+             , #{type}
+             , #{statFl}
+             , #{regKid}
+        <if test="charKid != 0 and charKid != null">
+             , #{charKid}
+        </if>
+            )
+    </insert>
+
+    <update id="updateOne" parameterType="com.gora.irago.domain.SRVO">
+        UPDATE  SR
+           SET  TITLE = #{title}
+              , CONTENT = #{content}
+              , TYPE = #{type}
+              , STAT_FL = #{statFl}
+        <if test="charKid != 0 and charKid != null">
+              , CHAR_KID = #{charKid}
+        </if>
+         WHERE  KID = #{kid}
+    </update>
+
+    <delete id="deleteOne" parameterType="com.gora.irago.domain.SRVO">
+        DELETE
+        FROM  SR
+        WHERE KID = #{kid}
+    </delete>
 </mapper>
