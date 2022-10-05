@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gora.irago.mapper.IdeaMapper" >
+
+    <insert id="insertIdea">
+        INSERT INTO IDEA
+            (
+                NAME
+              , DESCRIPTION
+            )
+        VALUE
+            (
+                #{name}
+              , #{description}
+            )
+    </insert>
+
+    <insert id="insertIdeaFN">
+        INSERT INTO IDEA_FUNC
+            (
+                IDEA_KID
+              , NAME
+              , DESCRIPTION
+              , CHAR_KID
+              , STAT
+            )
+        VALUES
+        <foreach item="fn" collection="list" separator=",">
+            (
+                LAST_INSERT_ID()
+              , #{fn.name}
+              , #{fn.description}
+              , #{fn.charger}
+              , #{fn.stat}
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectList" resultType="com.gora.irago.domain.IdeaVO">
+        SELECT  KID
+              , NAME
+              , DESCRIPTION
+              , STAT
+              , DEL_FL
+              , REG_DT
+        FROM IDEA
+    </select>
+
+    <select id="selectIdea" resultType="com.gora.irago.domain.IdeaVO">
+        SELECT KID
+             , NAME
+             , DESCRIPTION
+             , STAT
+        FROM IDEA
+        WHERE
+            kid=#{kid}
+    </select>
+
+    <select id="selectIdeaFN" resultType="com.gora.irago.domain.IdeaFNVO">
+        SELECT
+               KID
+             , NAME
+             , DESCRIPTION
+             , CHAR_KID
+             , STAT
+             , IDEA_KID
+        FROM IDEA_FUNC
+        WHERE
+            IDEA_KID = #{ideaKid}
+    </select>
+
+    <delete id="delete">
+        DELETE
+        FROM  IDEA
+        WHERE KID = #{kid}
+    </delete>
+
+    <update id="updateIdea">
+        UPDATE
+            IDEA
+        SET
+              NAME = #{name}
+            , DESCRIPTION = #{description}
+            , STAT = #{stat}
+        WHERE
+            KID = #{kid}
+    </update>
+
+    <update id="updateIdeaFN">
+        UPDATE
+            IDEA_FUNC
+        SET
+                  NAME = #{name}
+                , DESCRIPTION = #{description}
+                , CHAR_KID = #{charger}
+                , STAT = #{stat}
+        WHERE
+            KID = #{kid}
+    </update>
+</mapper>

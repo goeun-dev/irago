@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>iRaGo</title>
+</head>
+<body>
+    <h1>Idea List</h1>
+    <div>
+        <select>
+            <option>title</option>
+        </select>
+        <input type="text" />
+        <button>search</button>
+    </div>
+    <br/>
+    <div>
+        <div>
+            <span>seq</span>
+            <span>title</span>
+            <span>status</span>
+            <span>date</span>
+        </div>
+        <hr />
+        <div th:each="idea : ${ideaList}">
+            <span th:text="${idea.kid}"></span>
+            <span><a th:href="@{|/idea/read?kid=${idea.kid}|}" th:text="${idea.name}"></a></span>
+            <span th:text="${idea.stat}"></span>
+            <span th:text="${#dates.format(idea.regDt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+        </div>
+    </div>
+</body>
+</html>
