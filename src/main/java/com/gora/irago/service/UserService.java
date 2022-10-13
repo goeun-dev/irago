@@ -6,13 +6,13 @@ import com.gora.irago.domain.UserVO;
 import java.util.List;
 
 public interface UserService {
-    List<UserVO> selectList();
+    List<UserVO> findUserList();
 
-    List<UserVO> selectAdminList();
+    List<UserVO> findUserList(String auth);
 
-    UserVO selectOne(UserVO userVO);
+    UserVO findUser(UserVO userVO);
 
-    int deleteOne(UserVO userVO);
+    int removeUser(UserVO userVO);
 
-    int insertOne(UserVO userVO);
+    int addUser(UserVO userVO);
 }

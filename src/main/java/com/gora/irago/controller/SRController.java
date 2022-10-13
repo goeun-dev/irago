@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -36,16 +37,16 @@ public class SRController {
      * @param model
      * @return
      */
-    @RequestMapping("/list.do")
-    public String viewList(Model model) {
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String srList(Model model) {
 
         // 접속 사용자 정보 불러오기
         UserVO userVO = new UserVO();
         userVO.setKid(1);
-        userVO = userService.selectOne(userVO);
+        userVO = userService.findUser(userVO);
 
         // SR 목록 불러오기
-        List<SRVO> list = srService.selectList();
+        List<SRVO> list = srService.findSrList();
 
         // model attribute 세팅
         model.addAttribute("list", list);
@@ -60,11 +61,11 @@ public class SRController {
      * @param srVO
      * @return
      */
-    @RequestMapping("/detail.do")
-    public String viewDetail(Model model, @ModelAttribute("SRVO") SRVO srVO) {
-        srVO = srService.selectOne(srVO);
+    @RequestMapping(value = "/details", method = RequestMethod.GET)
+    public String srDetails(Model model, @ModelAttribute("SRVO") SRVO srVO) {
+        srVO = srService.findSR(srVO);
         model.addAttribute("sr", srVO);
-        return "/sr/srDetail.html";
+        return "/sr/srDetails.html";
     }
 
     /**
@@ -73,13 +74,13 @@ public class SRController {
      * @param model
      * @return
      */
-    @RequestMapping("/create.do")
-    public String createOne(Model model) {
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String srAdd(Model model) {
 
         // 접속 사용자 정보 불러오기
         UserVO userVO = new UserVO();
         userVO.setKid(1);
-        userVO = userService.selectOne(userVO);
+        userVO = userService.findUser(userVO);
 
         // sr 객체 생성, register 정보 담기
         SRVO srVO = new SRVO();
@@ -87,13 +88,31 @@ public class SRController {
         srVO.setRegId(userVO.getId());
 
         // charger 목록 불러오기
-        List<UserVO> charList = userService.selectAdminList();
+        List<UserVO> charList = userService.findUserList("admin");
 
         // model attribute 세팅
         model.addAttribute("sr", srVO);
         model.addAttribute("user", userVO);
         model.addAttribute("charList", charList);
-        return "/sr/srCreate.html";
+        return "/sr/srAdd.html";
+    }
+
+    /**
+     * SR 작성 처리
+     *
+     * @param model
+     * @param srVO
+     * @return
+     */
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String srAddPost(Model model, @ModelAttribute("SRVO") SRVO srVO) {
+        int result;
+            result = srService.addSR(srVO);
+        if (result >= 1) {
+            return "redirect:./list";
+        } else {
+            return "/error.html";
+        }
     }
 
     /**
@@ -102,13 +121,13 @@ public class SRController {
      * @param model
      * @return
      */
-    @RequestMapping("/modify.do")
-    public String modifyOne(Model model, @ModelAttribute("SRVO") SRVO srVO) {
+    @RequestMapping(value = "/modify", method = RequestMethod.GET)
+    public String srModify(Model model, @ModelAttribute("SRVO") SRVO srVO) {
         // 수정할 SR 정보 불러오기
-        srVO = srService.selectOne(srVO);
+        srVO = srService.findSR(srVO);
 
         // charger 목록 불러오기
-        List<UserVO> charList = userService.selectAdminList();
+        List<UserVO> charList = userService.findUserList("admin");
 
         // model attribute 세팅
         model.addAttribute("sr", srVO);
@@ -123,16 +142,12 @@ public class SRController {
      * @param srVO
      * @return
      */
-    @RequestMapping("/confirm.do")
-    public String confirmOne(Model model, @ModelAttribute("SRVO") SRVO srVO) {
+    @RequestMapping(value = "/modify", method = RequestMethod.POST)
+    public String srModifyPost(Model model, @ModelAttribute("SRVO") SRVO srVO) {
         int result;
-        if (srVO.getKid() == 0) {
-            result = srService.insertOne(srVO);
-        } else {
-            result = srService.updateOne(srVO);
-        }
+       result = srService.modifySR(srVO);
         if (result >= 1) {
-            return "redirect:./list.do";
+            return "redirect:./list";
         } else {
             return "/error.html";
         }
@@ -145,11 +160,11 @@ public class SRController {
      * @param srVO
      * @return
      */
-    @RequestMapping("/delete.do")
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteOne(Model model, @ModelAttribute("SRVO") SRVO srVO) {
-        int result = srService.deleteOne(srVO);
+        int result = srService.removeSR(srVO);
         if (result >= 1) {
-            List<SRVO> list = srService.selectList();
+            List<SRVO> list = srService.findSrList();
             model.addAttribute("list", list);
             return "/sr/srList.html";
         } else {

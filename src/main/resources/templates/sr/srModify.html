@@ -5,8 +5,8 @@
     <title>iRaGo - SR Create</title>
 </head>
 <body>
-<h1>SR</h1>
-<form action="/sr/confirm.do" th:object="${sr}" method="post">
+<h1>SR Modify</h1>
+<form action="/sr/modify" th:object="${sr}" method="post">
     <table border="1">
         <input th:field="*{kid}" type="hidden">
         <input th:field="*{regKid}" type="hidden">
@@ -61,7 +61,7 @@
             </td>
         </tr>
     </table>
-    <input type="button" value="cancel" onclick="location.href='/sr/list.do'">
+    <input type="button" value="cancel" onclick="location.href='/sr/list'">
     <button type="submit">confirm</button>
 </form>
 </body>
