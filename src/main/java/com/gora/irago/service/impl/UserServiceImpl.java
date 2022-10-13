@@ -17,27 +17,27 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public List<UserVO> selectList() {
-        return userMapper.selectList();
+    public List<UserVO> findUserList() {
+        return userMapper.selectUserList("");
     }
 
     @Override
-    public List<UserVO> selectAdminList() {
-        return userMapper.selectAdminList();
+    public List<UserVO> findUserList(String auth) {
+        return userMapper.selectUserList(auth);
     }
 
     @Override
-    public UserVO selectOne(UserVO userVO) {
-        return userMapper.selectOne(userVO);
+    public UserVO findUser(UserVO userVO) {
+        return userMapper.selectUser(userVO);
     }
 
     @Override
-    public int deleteOne(UserVO userVO) {
-        return userMapper.deleteOne(userVO);
+    public int removeUser(UserVO userVO) {
+        return userMapper.deleteUser(userVO);
     }
 
     @Override
-    public int insertOne(UserVO userVO) {
-        return userMapper.insertOne(userVO);
+    public int addUser(UserVO userVO) {
+        return userMapper.insertUser(userVO);
     }
 }
