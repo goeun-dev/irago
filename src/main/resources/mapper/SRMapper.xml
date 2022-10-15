@@ -4,7 +4,7 @@
 
 <!-- SQL Mapping -->
 <mapper namespace="com.gora.irago.mapper.SRMapper" >
-    <select id="selectList" resultType="com.gora.irago.domain.SRVO">
+    <select id="selectSRList" resultType="com.gora.irago.domain.SRVO">
         SELECT  SR.KID
               , SR.TITLE
               , SR.CONTENT
@@ -26,7 +26,7 @@
                 ON SR.CHAR_KID = CHR.KID
     </select>
 
-    <select id="selectOne" parameterType="com.gora.irago.domain.SRVO" resultType="com.gora.irago.domain.SRVO">
+    <select id="selectSR" parameterType="com.gora.irago.domain.SRVO" resultType="com.gora.irago.domain.SRVO">
         SELECT  SR.KID
               , SR.TITLE
               , SR.CONTENT
@@ -49,7 +49,7 @@
          WHERE  SR.KID = #{kid}
     </select>
 
-    <insert id="insertOne" parameterType="com.gora.irago.domain.SRVO">
+    <insert id="insertSR" parameterType="com.gora.irago.domain.SRVO">
         INSERT INTO SR
             (
                KID
@@ -76,7 +76,7 @@
             )
     </insert>
 
-    <update id="updateOne" parameterType="com.gora.irago.domain.SRVO">
+    <update id="updateSR" parameterType="com.gora.irago.domain.SRVO">
         UPDATE  SR
            SET  TITLE = #{title}
               , CONTENT = #{content}
@@ -88,7 +88,7 @@
          WHERE  KID = #{kid}
     </update>
 
-    <delete id="deleteOne" parameterType="com.gora.irago.domain.SRVO">
+    <delete id="deleteSR" parameterType="com.gora.irago.domain.SRVO">
         DELETE
         FROM  SR
         WHERE KID = #{kid}

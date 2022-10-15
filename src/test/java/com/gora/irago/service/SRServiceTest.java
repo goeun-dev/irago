@@ -17,7 +17,7 @@ class SRServiceTest {
 
     @Test
     public void SR목록불러오기테스트(){
-        List<SRVO> result = srService.selectList();
+        List<SRVO> result = srService.findSrList();
         System.out.println(result);
     }
 }

@@ -5,7 +5,7 @@
     <title>iRaGo - SR Detail</title>
 </head>
 <body>
-<h1>SR</h1>
+<h1>SR Detail</h1>
 <table border="1">
     <tr>
         <th>title</th>
@@ -37,8 +37,8 @@
         </th:block>
     </tr>
 </table>
-<input type="button" value="to list" onclick="location.href='/sr/list.do'">
-<input type="button" value="modify" th:onclick="'location.href=\'/sr/modify.do?kid='+${sr.kid}+'\''">
-<input type="button" value="delete" th:onclick="'location.href=\'/sr/delete.do?kid='+${sr.kid}+'\''">
+<input type="button" value="to list" onclick="location.href='/sr/list'">
+<input type="button" value="modify" th:onclick="'location.href=\'/sr/modify?kid='+${sr.kid}+'\''">
+<input type="button" value="delete" th:onclick="'location.href=\'/sr/remove?kid='+${sr.kid}+'\''">
 </body>
 </html>

@@ -5,6 +5,20 @@
     <title>iRaGo - SR list</title>
 </head>
 <body>
+<h1>SR List</h1>
+<div>
+    <select>
+        <option th:value="title" th:text="title"></option>
+        <option th:value="type" th:text="type"></option>
+        <option th:value="status" th:text="status"></option>
+        <option th:value="register" th:text="register"></option>
+    </select>
+    <th:block>
+    <input type="text" />
+    </th:block>
+    <button>search</button>
+</div>
+<br/>
 <table border="1">
     <thead>
     <tr>
@@ -17,7 +31,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="list : ${list}" th:onclick="'location.href=\''+@{/sr/detail.do}+'?kid='+${list.kid}+'\''">
+    <tr th:each="list : ${list}" th:onclick="'location.href=\''+@{/sr/details}+'?kid='+${list.kid}+'\''">
         <td th:text="${list.kid}"></td>
         <td th:text="${list.title}"></td>
         <td th:text="${list.type}"></td>
@@ -27,6 +41,6 @@
     </tr>
     </tbody>
 </table>
-<input type="button" value="create" onclick="location.href='/sr/create.do'">
+<input type="button" value="create" onclick="location.href='/sr/add'">
 </body>
 </html>

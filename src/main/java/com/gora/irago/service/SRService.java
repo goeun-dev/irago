@@ -5,13 +5,13 @@ import com.gora.irago.domain.SRVO;
 import java.util.List;
 
 public interface SRService {
-    List<SRVO> selectList();
+    List<SRVO> findSrList();
 
-    SRVO selectOne(SRVO srVO);
+    SRVO findSR(SRVO srVO);
 
-    int deleteOne(SRVO srVO);
+    int addSR(SRVO srVO);
 
-    int insertOne(SRVO srVO);
+    int modifySR(SRVO srVO);
 
-    int updateOne(SRVO srVO);
+    int removeSR(SRVO srVO);
 }

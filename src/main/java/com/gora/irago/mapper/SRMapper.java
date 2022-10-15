@@ -7,13 +7,13 @@ import java.util.List;
 
 @Mapper
 public interface SRMapper {
-    List<SRVO> selectList();
+    List<SRVO> selectSRList();
 
-    SRVO selectOne(SRVO srVO);
+    SRVO selectSR(SRVO srVO);
 
-    int deleteOne(SRVO srVO);
+    int insertSR(SRVO srVO);
 
-    int insertOne(SRVO srVO);
+    int updateSR(SRVO srVO);
 
-    int updateOne(SRVO srVO);
+    int deleteSR(SRVO srVO);
 }

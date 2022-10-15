@@ -8,10 +8,9 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    List<UserVO> selectList();
+    List<UserVO> selectUserList(String auth);
 
-    List<UserVO> selectAdminList();
-    UserVO selectOne(UserVO userVO);
-    int deleteOne(UserVO userVO);
-    int insertOne(UserVO userVO);
+    UserVO selectUser(UserVO userVO);
+    int deleteUser(UserVO userVO);
+    int insertUser(UserVO userVO);
 }

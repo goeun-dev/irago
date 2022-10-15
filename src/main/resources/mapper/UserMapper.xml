@@ -4,32 +4,20 @@
 
 <!-- SQL Mapping -->
 <mapper namespace="com.gora.irago.mapper.UserMapper" >
-    <select id="selectList" resultType="com.gora.irago.domain.UserVO">
+    <select id="selectUserList" parameterType="String" resultType="com.gora.irago.domain.UserVO">
         SELECT  KID
-              , NAME
-              , AUTH
-              , REG_DT
-              , DEL_FL
-              , DEL_DT
-              , ID
-              , PW
-          FROM  USER
+             , NAME
+             , AUTH
+             , REG_DT
+             , DEL_FL
+             , DEL_DT
+             , ID
+             , PW
+        FROM  USER
+       WHERE  AUTH = #{auth}
     </select>
 
-    <select id="selectAdminList" parameterType="com.gora.irago.domain.UserVO" resultType="com.gora.irago.domain.UserVO">
-        SELECT  KID
-              , NAME
-              , AUTH
-              , REG_DT
-              , DEL_FL
-              , DEL_DT
-              , ID
-              , PW
-         FROM  USER
-        WHERE  AUTH = 'admin'
-    </select>
-
-    <select id="selectOne" parameterType="com.gora.irago.domain.UserVO" resultType="com.gora.irago.domain.UserVO">
+    <select id="selectUser" parameterType="com.gora.irago.domain.UserVO" resultType="com.gora.irago.domain.UserVO">
         SELECT  KID
               , NAME
               , AUTH
@@ -44,7 +32,7 @@
 
 
 
-    <insert id="insertOne" parameterType="com.gora.irago.domain.UserVO">
+    <insert id="insertUser" parameterType="com.gora.irago.domain.UserVO">
         INSERT INTO SR
             (
                 KID
@@ -63,7 +51,7 @@
             )
     </insert>
 
-    <delete id="deleteOne" parameterType="com.gora.irago.domain.UserVO">
+    <delete id="deleteUser" parameterType="com.gora.irago.domain.UserVO">
         DELETE
         FROM  USER
         WHERE KID = #{kid}
