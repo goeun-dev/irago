@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IdeaService {
 
-    void register(IdeaVO ideaVO);
+    void addIdea(IdeaVO ideaVO);
 
-    List<IdeaVO> getList();
+    List<IdeaVO> findIdeaList();
 
-    IdeaVO read(Integer kid);
+    IdeaVO findIdea(Integer kid);
 
-    void remove(Integer kid);
+    void removeIdea(Integer kid);
 
-    void modify(IdeaVO ideaVO);
+    void modifyIdea(IdeaVO ideaVO);
 }

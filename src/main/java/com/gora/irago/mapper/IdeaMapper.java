@@ -13,13 +13,13 @@ public interface IdeaMapper {
 
     void insertIdeaFN(List<IdeaFNVO> ideaFNVOList);
 
-    List<IdeaVO> selectList();
+    List<IdeaVO> selectIdeaList();
 
     IdeaVO selectIdea(Integer kid);
 
-    List<IdeaFNVO> selectIdeaFN(Integer ideaKid);
+    List<IdeaFNVO> selectIdeaFNList(Integer ideaKid);
 
-    void delete(Integer kid);
+    void deleteIdea(Integer kid);
 
     void updateIdea(IdeaVO ideaVO);
 

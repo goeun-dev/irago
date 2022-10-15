@@ -37,7 +37,7 @@
         </foreach>
     </insert>
 
-    <select id="selectList" resultType="com.gora.irago.domain.IdeaVO">
+    <select id="selectIdeaList" resultType="com.gora.irago.domain.IdeaVO">
         SELECT  KID
               , NAME
               , DESCRIPTION
@@ -57,7 +57,7 @@
             kid=#{kid}
     </select>
 
-    <select id="selectIdeaFN" resultType="com.gora.irago.domain.IdeaFNVO">
+    <select id="selectIdeaFNList" resultType="com.gora.irago.domain.IdeaFNVO">
         SELECT
                KID
              , NAME
@@ -70,7 +70,7 @@
             IDEA_KID = #{ideaKid}
     </select>
 
-    <delete id="delete">
+    <delete id="deleteIdea">
         DELETE
         FROM  IDEA
         WHERE KID = #{kid}

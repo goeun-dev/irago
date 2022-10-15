@@ -1,6 +1,5 @@
 package com.gora.irago.controller;
 
-import com.gora.irago.domain.IdeaFNVO;
 import com.gora.irago.domain.IdeaVO;
 import com.gora.irago.service.IdeaService;
 import lombok.Setter;
@@ -20,50 +19,53 @@ public class IdeaController {
     @Setter(onMethod_ = {@Autowired})
     private IdeaService ideaService;
 
-    @GetMapping("/register")
-    public void registerGET() {
+    @GetMapping("/add")
+    public void ideaAdd() {
 
         log.info("register GET......");
     }
 
-    @RequestMapping(value = "/register")
-    public ResponseEntity<String> registerPOST(@RequestBody IdeaVO ideaVO) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ResponseEntity<String> ideaAddPost(@RequestBody IdeaVO ideaVO) {
 
         log.info("register POST....." + ideaVO);
 
-        ideaService.register(ideaVO);
+        ideaService.addIdea(ideaVO);
 
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
-    @GetMapping("/read")
-    public void readGET(Integer kid, Model model) {
-        model.addAttribute("idea", ideaService.read(kid));
+    @GetMapping("/details")
+    public void ideaDetails(Integer kid, Model model) {
+
+        model.addAttribute("idea", ideaService.findIdea(kid));
     }
 
     @GetMapping("/list")
-    public void listGET(Model model) {
-        model.addAttribute("ideaList", ideaService.getList());
+    public void ideaList(Model model) {
+
+        model.addAttribute("ideaList", ideaService.findIdeaList()
+        );
     }
 
     @GetMapping("/modify")
-    public void modifyGET(Integer kid, Model model) {
-        model.addAttribute("idea", ideaService.read(kid));
+    public void ideaModify(Integer kid, Model model) {
+        model.addAttribute("idea", ideaService.findIdea(kid));
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
-    public ResponseEntity<String> modifyPOST(@RequestBody IdeaVO ideaVO) {
+    public ResponseEntity<String> ideaModifyPost(@RequestBody IdeaVO ideaVO) {
 
         log.info("modify POST....." + ideaVO);
 
-        ideaService.modify(ideaVO);
+        ideaService.modifyIdea(ideaVO);
 
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
-    @PostMapping("/delete")
-    public ResponseEntity<String> deletePOST(Integer kid) {
-        ideaService.remove(kid);
+    @PostMapping("/remove")
+    public ResponseEntity<String> ideaRemovePost(Integer kid) {
+        ideaService.removeIdea(kid);
 
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
