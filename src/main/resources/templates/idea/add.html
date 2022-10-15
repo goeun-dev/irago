@@ -65,7 +65,7 @@
     <br/>
 
     <div>
-        <button>cancel</button>
+        <button id="cancel">cancel</button>
         <button id="confirm">confirm</button>
     </div>
 </form>
@@ -133,7 +133,7 @@
 
         $.ajax({
             type : "POST",
-            url : "/idea/register",
+            url : "/idea/add",
             data : JSON.stringify({
                 name: idName,
                 description: idDesc,

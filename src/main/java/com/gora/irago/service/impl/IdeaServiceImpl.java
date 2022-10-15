@@ -20,7 +20,7 @@ public class IdeaServiceImpl implements IdeaService {
     private IdeaMapper ideaMapper;
 
     @Override
-    public void register(IdeaVO ideaVO) {
+    public void addIdea(IdeaVO ideaVO) {
 
         log.info("idea service [register]....." + ideaVO);
 
@@ -29,17 +29,17 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     @Override
-    public List<IdeaVO> getList() {
+    public List<IdeaVO> findIdeaList() {
 
-        return ideaMapper.selectList();
+        return ideaMapper.selectIdeaList();
     }
 
     @Override
-    public IdeaVO read(Integer kid) {
+    public IdeaVO findIdea(Integer kid) {
 
         IdeaVO idea = ideaMapper.selectIdea(kid);
 
-        List<IdeaFNVO> ideaFNList = ideaMapper.selectIdeaFN(kid);
+        List<IdeaFNVO> ideaFNList = ideaMapper.selectIdeaFNList(kid);
 
         idea.setIdeaFNList(ideaFNList);
 
@@ -47,13 +47,13 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     @Override
-    public void remove(Integer kid) {
-        ideaMapper.delete(kid);
+    public void removeIdea(Integer kid) {
+        ideaMapper.deleteIdea(kid);
     }
 
     @Transactional
     @Override
-    public void modify(IdeaVO ideaVO) {
+    public void modifyIdea(IdeaVO ideaVO) {
         ideaMapper.updateIdea(ideaVO);
 
         for (IdeaFNVO fn : ideaVO.getIdeaFNList()) {
