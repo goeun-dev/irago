@@ -10,6 +10,11 @@ body, div, span, a, input, select, textarea {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: #507260;
+}
+
 .head {
     box-sizing: border-box;
 }
@@ -35,19 +40,24 @@ body, div, span, a, input, select, textarea {
     display: inline-block;
     font-size: 21px;
     font-weight: bold;
-    color: #FF954D;
     /* height: 100vh; */
     width: 167px;
     margin-right: 70px;
     padding-left: 10px;
     line-height: 103px;
 }
+.head .menu a {
+    color: #FF954D;
+}
 
 .head .menu.active, .head .menu:hover {
     cursor: pointer;
-    color: #507260;
     background-color: #FF954D;
     transition: .3s;
+}
+
+.head .menu.active a, .head .menu:hover a {
+    color: #507260;
 }
 
 .content {
@@ -100,11 +110,6 @@ body, div, span, a, input, select, textarea {
 }
 
 /* Form tags */
-select{
-    /* appearance:none; */
-    /* background:url('../img/icon_select_arrow.png') no-repeat right 24px center; */
-}
-
 input, select, textarea {
     border: none;
     background-color: rgba(255, 255, 255, .2);
@@ -112,6 +117,13 @@ input, select, textarea {
     padding: 10px;
     font-size: 16px;
     width: 100%;
+    display: inline-block;
+}
+
+select{
+    /* appearance:none; */
+    /* background:url('../img/icon_select_arrow.png') no-repeat right 24px center; */
+    width: 20%;
 }
 
 /* 기본 버튼 */

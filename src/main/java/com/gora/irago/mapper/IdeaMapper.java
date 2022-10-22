@@ -2,6 +2,7 @@ package com.gora.irago.mapper;
 
 import com.gora.irago.domain.IdeaFNVO;
 import com.gora.irago.domain.IdeaVO;
+import com.gora.irago.domain.PriorityVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -24,4 +25,14 @@ public interface IdeaMapper {
     void updateIdea(IdeaVO ideaVO);
 
     void updateIdeaFN(IdeaFNVO ideaFNVO);
+
+    // 우선순위 관련 메서드
+    List<PriorityVO> selectPriority(String division);
+
+    void updatePriority(PriorityVO prVO);
+
+    List<Integer> selectDivisionByPriority(List<PriorityVO> prList);
+
+    void updateDivisionPriority(Integer priority, Integer kid);
+    
 }

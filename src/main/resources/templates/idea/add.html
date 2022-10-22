@@ -1,74 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>iRaGo</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
 </head>
 <body>
-<h1>Idea Register</h1>
-<h4>idea</h4>
 
-<form method="post" action="">
-    <div>
+<!-- header -->
+<div class="head">
+    <div class="logo"><a href="#">iRaGo</a></div>
+    <div class="menu active"><a href="/idea/list">Idea</a></div>
+    <div class="menu"><a href="/sr/list">Sr</a></div>
+</div>
+
+<!-- content -->
+<div class="content">
+    <form method="post" action="">
         <div>
-            <span>title</span>
-            <span>contents</span>
-            <span>status</span>
-        </div>
-        <hr />
-        <div>
-            <span><input type="text" name="idName" /></span>
-            <span><textarea name="idDesc"></textarea></span>
-            <span>
+            <div>
+                <span>title</span>
+                <span>contents</span>
+                <span>status</span>
+            </div>
+            <hr />
+            <div>
+                <span><input type="text" name="idName" /></span>
+                <span><textarea name="idDesc"></textarea></span>
+                <span>
                 <select name="idStat">
                     <option value="N">not started</option>
                     <option value="P">P</option>
                     <option value="Y">Y</option>
                 </select>
             </span>
+            </div>
         </div>
-    </div>
-    <br />
-    <hr />
-    <br />
-    <h4>functions</h4>
-    <div id="function">
-        <div>
-            <span>name</span>
-            <span>description</span>
-            <span>charger</span>
-            <span>status</span>
-        </div>
+        <br />
         <hr />
-        <div class="fn-input">
+        <br />
+        <h4>functions</h4>
+        <div id="function">
+            <div>
+                <span>name</span>
+                <span>description</span>
+                <span>charger</span>
+                <span>status</span>
+            </div>
+            <hr />
+            <div class="fn-input">
             <span>
                 <input type="text" name="fnName" />
             </span>
-            <span><input type="text" name="fnDesc" /></span>
-            <span>
+                <span><input type="text" name="fnDesc" /></span>
+                <span>
                 <select name="fnCharger">
                     <option value="1">ra</option>
                     <option value="2">go</option>
                 </select>
             </span>
-            <span>
+                <span>
                 <select name="fnStat">
                     <option value="N">not started</option>
                     <option value="P">P</option>
                     <option value="Y">Y</option>
                 </select>
             </span>
+            </div>
         </div>
-    </div>
-    <div ><button id="add"> + </button></div>
+        <div ><button id="add"> + </button></div>
 
-    <br/>
+        <br/>
 
-    <div>
-        <button id="cancel">cancel</button>
-        <button id="confirm">confirm</button>
-    </div>
-</form>
+        <div>
+            <button id="cancel">cancel</button>
+            <button id="confirm">confirm</button>
+        </div>
+    </form>
+
+</div>
+
+<!-- footer -->
+<div class="footer"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
@@ -143,8 +156,8 @@
             dataType: 'text',
             contentType: 'application/json',
             success : function(data) {
-               // console.log('success: ', data)
-               location.href = "/idea/list";
+                // console.log('success: ', data)
+                location.href = "/idea/list";
             },
             error : function(data) {
             }

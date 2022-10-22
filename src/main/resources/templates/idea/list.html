@@ -10,17 +10,17 @@
     <!-- header -->
     <div class="head">
         <div class="logo"><a href="#">iRaGo</a></div>
-        <div class="menu active">Idea</div>
-        <div class="menu">Sr</div>
+        <div class="menu active"><a href="/idea/list">Idea</a></div>
+        <div class="menu"><a href="/sr/list">Sr</a></div>
     </div>
 
     <!-- content -->
     <div class="content">
-        <div>
+        <div style="margin-top: 30px; margin-bottom: 50px;">
             <select>
                 <option>title</option>
             </select>
-            <input type="text" />
+            <input style="width: 60%;" type="text" />
             <button>search</button>
         </div>
 
@@ -38,6 +38,10 @@
                 <div th:text="${#dates.format(idea.regDt, 'yyyy-MM-dd HH:mm:ss')}"></div>
             </div>
         </div>
+        <div style="margin-top: 50px; text-align: right;">
+            <a href="/idea/add" class="btn btn-cancel">Add</a>
+        </div>
+
     </div>
 
     <!-- footer -->

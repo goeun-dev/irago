@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>iRaGo</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
+</head>
+<body>
+
+<!-- header -->
+<div class="head">
+    <div class="logo"><a href="#">iRaGo</a></div>
+    <div class="menu active"><a href="/idea/list">Idea</a></div>
+    <div class="menu"><a href="/sr/list">Sr</a></div>
+</div>
+
+<!-- content -->
+<div class="content">
+    <div style="margin-top: 30px; margin-bottom: 50px;">
+        <form method="get" action="/idea/priority">
+            <span>division</span>
+            <select name="division">
+                <option value="idea" th:selected="${division} == 'idea'">idea</option>
+                <option value="idea_func" th:selected="${division} == 'idea_func'">idea_func</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="table" th:data-division="${division}">
+        <div class="table-row table-head">
+            <div>type</div>
+            <div>priority</div>
+        </div>
+        <div class="table-row" th:each="pr : ${prList}">
+            <div th:text="${pr.type}">type</div>
+            <div>
+                <input class="pr-list" type="text" th:data-type="${pr.type}" th:value="${pr.priority}">
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 50px; text-align: right;">
+        <button id="confirm" class="btn">confirm</button>
+    </div>
+
+</div>
+
+<!-- footer -->
+<div class="footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script>
+    $('select[name=division]').on("change", function (e) {
+        this.form.submit();
+    });
+
+    $('#confirm').on("click", function (e) {
+
+        const prListTag = $('.pr-list');
+        const division = $('.table').data('division');
+
+        let prList = {};
+        prList.division = division;
+
+        let list = [];
+        $(prListTag).each(function(index, item){
+
+            const type = item.dataset.type;
+            const priority = item.value;
+
+
+            list.push({type, priority});
+        })
+
+        prList.priority = list;
+
+        console.log(prList)
+
+        // ajax 폼 전송
+        jQuery.ajaxSettings.traditional = true;
+
+        $.ajax({
+            type : "POST",
+            url : "/idea/priority",
+            data : JSON.stringify({prList: prList}),
+            dataType: 'text',
+            contentType: 'application/json',
+            success : function(data) {
+                // console.log('success: ', data)
+                location.href = "/idea/priority?division=" + division;
+            },
+            error : function(data) {
+                console.log(data)
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
