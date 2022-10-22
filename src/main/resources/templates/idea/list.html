@@ -3,31 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>iRaGo</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
 </head>
 <body>
-    <h1>Idea List</h1>
-    <div>
-        <select>
-            <option>title</option>
-        </select>
-        <input type="text" />
-        <button>search</button>
+
+    <!-- header -->
+    <div class="head">
+        <div class="logo"><a href="#">iRaGo</a></div>
+        <div class="menu active">Idea</div>
+        <div class="menu">Sr</div>
     </div>
-    <br/>
-    <div>
+
+    <!-- content -->
+    <div class="content">
         <div>
-            <span>seq</span>
-            <span>title</span>
-            <span>status</span>
-            <span>date</span>
+            <select>
+                <option>title</option>
+            </select>
+            <input type="text" />
+            <button>search</button>
         </div>
-        <hr />
-        <div th:each="idea : ${ideaList}">
-            <span th:text="${idea.kid}"></span>
-            <span><a th:href="@{|/idea/details?kid=${idea.kid}|}" th:text="${idea.name}"></a></span>
-            <span th:text="${idea.stat}"></span>
-            <span th:text="${#dates.format(idea.regDt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+
+        <div class="table">
+            <div class="table-row table-head">
+                <div>seq</div>
+                <div>title</div>
+                <div>status</div>
+                <div>date</div>
+            </div>
+            <div class="table-row" th:each="idea : ${ideaList}">
+                <div th:text="${idea.kid}"></div>
+                <div><a th:href="@{|/idea/details?kid=${idea.kid}|}" th:text="${idea.name}"></a></div>
+                <div th:text="${idea.stat}"></div>
+                <div th:text="${#dates.format(idea.regDt, 'yyyy-MM-dd HH:mm:ss')}"></div>
+            </div>
         </div>
     </div>
+
+    <!-- footer -->
+    <div class="footer"></div>
 </body>
 </html>
