@@ -1,6 +1,8 @@
 package com.gora.irago.controller;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.gora.irago.domain.IdeaVO;
+import com.gora.irago.domain.PriorityVO;
 import com.gora.irago.service.IdeaService;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RequestMapping("/idea")
@@ -66,6 +72,26 @@ public class IdeaController {
     @PostMapping("/remove")
     public ResponseEntity<String> ideaRemovePost(Integer kid) {
         ideaService.removeIdea(kid);
+
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    // 우선순위 관련 컨트롤러
+    // 우선순위 설정 페이지
+    @GetMapping("/priority")
+    public void prioritySetting(@ModelAttribute("division") String division, Model model) {
+        if (division == null || division.isEmpty()) {
+            division = "idea";
+        }
+
+        model.addAttribute("prList", ideaService.findPriorityList(division));
+    }
+
+    // 우선순위 설정
+    @RequestMapping(value = "/priority", method = RequestMethod.POST)
+    public  ResponseEntity<String> prioritySetting(@RequestBody Map<String, Object> prList) {
+
+        ideaService.modifyPriority(prList);
 
         return new ResponseEntity<>("success", HttpStatus.OK);
     }

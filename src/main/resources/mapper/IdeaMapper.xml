@@ -98,4 +98,45 @@
         WHERE
             KID = #{kid}
     </update>
+
+    <!-- 우선순위 관련 쿼리 -->
+    <select id="selectPriority" resultType="com.gora.irago.domain.PriorityVO">
+        SELECT
+            *
+        FROM PRIORITY
+        WHERE
+            DIVISION = #{division}
+        ORDER BY
+            PRIORITY
+    </select>
+
+    <update id="updatePriority">
+        UPDATE
+            PRIORITY
+        SET
+            PRIORITY = #{priority}
+        WHERE
+            DIVISION = #{division}
+        AND
+            TYPE = #{type}
+    </update>
+
+    <select id="selectDivisionByPriority" resultType="Integer">
+        SELECT
+            kid
+        FROM idea
+        ORDER BY
+        <foreach item="pr" collection="list" separator=",">
+            ${pr.type} DESC
+        </foreach>
+    </select>
+
+    <update id="updateDivisionPriority">
+        UPDATE
+            idea
+        SET
+            priority = #{param1}
+        WHERE
+            kid = #{param2}
+    </update>
 </mapper>
