@@ -26,13 +26,5 @@ public interface IdeaMapper {
 
     void updateIdeaFN(IdeaFNVO ideaFNVO);
 
-    // 우선순위 관련 메서드
-    List<PriorityVO> selectPriority(String division);
 
-    void updatePriority(PriorityVO prVO);
-
-    List<Integer> selectDivisionByPriority(List<PriorityVO> prList);
-
-    void updateDivisionPriority(Integer priority, Integer kid);
-    
 }

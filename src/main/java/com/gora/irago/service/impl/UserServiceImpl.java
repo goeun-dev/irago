@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Setter(onMethod_ = {@Autowired})
+    @Autowired
     UserMapper userMapper;
 
     @Override

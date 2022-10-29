@@ -2,6 +2,8 @@ package com.gora.irago.domain;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class IdeaFNVO {
 
@@ -13,5 +15,11 @@ public class IdeaFNVO {
 
     private Integer ideaKid;
     private Integer charger;
+
+    private Date regDate;
+
+    private Integer priority;
+    /* order by */
+    private String order;
     
 }

@@ -22,7 +22,7 @@ import java.util.Map;
 @Controller
 public class IdeaController {
 
-    @Setter(onMethod_ = {@Autowired})
+    @Autowired
     private IdeaService ideaService;
 
     @GetMapping("/add")
@@ -76,23 +76,5 @@ public class IdeaController {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
-    // 우선순위 관련 컨트롤러
-    // 우선순위 설정 페이지
-    @GetMapping("/priority")
-    public void prioritySetting(@ModelAttribute("division") String division, Model model) {
-        if (division == null || division.isEmpty()) {
-            division = "idea";
-        }
 
-        model.addAttribute("prList", ideaService.findPriorityList(division));
-    }
-
-    // 우선순위 설정
-    @RequestMapping(value = "/priority", method = RequestMethod.POST)
-    public  ResponseEntity<String> prioritySetting(@RequestBody Map<String, Object> prList) {
-
-        ideaService.modifyPriority(prList);
-
-        return new ResponseEntity<>("success", HttpStatus.OK);
-    }
 }
