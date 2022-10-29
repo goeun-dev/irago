@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL Mapping -->
+<mapper namespace="com.gora.irago.mapper.PriorityMapper" >
+
+    <!-- 우선순위 관련 쿼리 -->
+    <select id="selectPriority" resultType="com.gora.irago.domain.PriorityVO">
+        SELECT
+            *
+        FROM PRIORITY
+        WHERE
+            DIVISION = #{division}
+        ORDER BY
+            PRIORITY
+    </select>
+
+    <update id="updatePriority">
+        UPDATE
+            PRIORITY
+        SET
+            PRIORITY = #{priority}
+        WHERE
+            DIVISION = #{division}
+          AND
+            TYPE = #{type}
+    </update>
+
+    <select id="selectKidByPriority" resultType="Integer">
+        SELECT
+        kid
+        FROM ${division}
+        ORDER BY
+        <foreach item="pr" collection="prList" separator=",">
+            ${pr.type} ${pr.order}
+        </foreach>
+    </select>
+
+    <update id="updateDivisionByPriority">
+        UPDATE
+            ${division}
+        SET
+            priority = #{priority}
+        WHERE
+            kid = #{kid}
+    </update>
+
+</mapper>

@@ -18,7 +18,5 @@ public interface IdeaService {
 
     void modifyIdea(IdeaVO ideaVO);
     
-    // 우선순위 관련 메서드
-    List<PriorityVO> findPriorityList(String division);
-    void modifyPriority(Map<String, Object> obj);
+
 }

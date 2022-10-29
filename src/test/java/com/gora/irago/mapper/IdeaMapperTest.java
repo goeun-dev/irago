@@ -29,7 +29,7 @@ public class IdeaMapperTest {
 
     @Test
     public void findDivisionByPriority() {
-        List<PriorityVO> prList = ideaMapper.selectPriority("idea");
-        log.info("" + ideaMapper.selectDivisionByPriority(prList));
+//        List<PriorityVO> prList = ideaMapper.selectPriority("idea");
+//        log.info("" + ideaMapper.selectDivisionByPriority(prList));
     }
 }

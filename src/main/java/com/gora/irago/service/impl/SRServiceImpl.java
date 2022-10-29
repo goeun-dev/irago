@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class SRServiceImpl implements SRService {
 
-    @Setter(onMethod_ = {@Autowired})
+    @Autowired
     SRMapper srMapper;
 
     @Override
